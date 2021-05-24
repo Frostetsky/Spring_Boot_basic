@@ -1,7 +1,6 @@
 package com.nikita.spring_boot_rest_api.dao;
 
 import com.nikita.spring_boot_rest_api.entity.City;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,28 +15,25 @@ public class CityDAOImpl implements CityDAO {
 
     @Override
     public List<City> findAll() {
-        Session session = entityManager.unwrap(Session.class);
-        List<City> result = session.createQuery("from City", City.class).getResultList();
+        List<City> result = entityManager.createQuery("from City", City.class).getResultList();
         return result;
     }
 
     @Override
     public City findByID(Integer id) {
-        Session session = entityManager.unwrap(Session.class);
-        City city = session.get(City.class, id);
+        City city = entityManager.find(City.class, id);
         return city;
     }
 
     @Override
     public void saveOrUpdate(City city) {
-        Session session = entityManager.unwrap(Session.class);
-        session.saveOrUpdate(city);
+        City newCity = entityManager.merge(city);
+        city.setId(newCity.getId());
     }
 
     @Override
     public void deleteByID(Integer id) {
-        Session session = entityManager.unwrap(Session.class);
-        City deleted = session.get(City.class, id);
-        session.delete(deleted);
+        City deleted = entityManager.find(City.class, id);
+        entityManager.remove(deleted);
     }
 }
