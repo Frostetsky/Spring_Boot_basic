@@ -41,4 +41,9 @@ public class MyController {
         cityService.deleteByID(id);
         return "Employee with id " + id + " was deleted.";
     }
+
+    @GetMapping("/cities/country/{country}")
+    public List<City> findAllCitiesByCountry(@PathVariable String country) {
+        return cityService.findAllCityByCountry(country);
+    }
 }

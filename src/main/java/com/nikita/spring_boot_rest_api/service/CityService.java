@@ -13,5 +13,7 @@ public interface CityService {
     public void saveOrUpdate(City city);
 
     public void deleteByID(Integer id);
+
+    public List<City> findAllCityByCountry(String country);
 }
 
