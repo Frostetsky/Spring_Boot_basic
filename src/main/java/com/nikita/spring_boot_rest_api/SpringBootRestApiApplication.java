@@ -11,3 +11,11 @@ public class SpringBootRestApiApplication {
     }
 
 }
+
+// Spring Boot Data Rest - автоматически создаёт необходимые мапинги для CRUD операций.
+
+// Spring Boot Actuator предоставляет готовые конечные точки (endpoints), с помощью которых мониторится приложение.
+// actuator/health - информация о статусе приложения.
+// actuator/info - информация о приложении.
+// actuator/beans - информация о всех бинах, зарегистрированных в Spring Container.
+// actuator/mappings - Информация о всех Mapping-aх.
