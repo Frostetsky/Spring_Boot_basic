@@ -1,6 +1,7 @@
 package com.nikita.spring_boot_rest_api.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "city")
@@ -22,6 +23,13 @@ public class City {
 
 
     public City() {
+    }
+
+    public City(Integer id, String country, String name, Long population) {
+        this.id = id;
+        this.country = country;
+        this.name = name;
+        this.population = population;
     }
 
     public City(String country, String name, Long population) {
@@ -60,5 +68,21 @@ public class City {
 
     public void setPopulation(Long population) {
         this.population = population;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        City city = (City) o;
+        return Objects.equals(id, city.id)
+                && Objects.equals(country, city.country)
+                && Objects.equals(name, city.name)
+                && Objects.equals(population, city.population);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, country, name, population);
     }
 }
